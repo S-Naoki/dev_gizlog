@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
 use Illuminate\Http\Request;
 use App\Models\DailyReport;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DailyReportController extends Controller
 {
@@ -97,6 +97,7 @@ class DailyReportController extends Controller
     public function update(DailyReportRequest $request, $id)
     {
         $input = $request->all();
+        $input['user_id'] = Auth::id();
         $this->dailyReport->find($id)->fill($input)->save();
         return redirect()->route('report.index');
     }
