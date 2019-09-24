@@ -13,8 +13,7 @@ class DailyReport extends Model
         'user_id',
         'title',
         'content',
-        'reporting_time',
-        'body'
+        'reporting_time'
     ];
     
     public function getByUserId($id)
