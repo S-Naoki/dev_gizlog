@@ -71,8 +71,7 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $dailyReport = $this->dailyReport->find($id);
-        $text = "の日報";
-        return view('user.daily_report.show', compact('dailyReport', 'text'));
+        return view('user.daily_report.show', compact('dailyReport'));
     }
 
     /**
