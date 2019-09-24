@@ -11,9 +11,11 @@
 |
  */
 
+// Route::resource('report', 'DailyReportController');
+
 Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Auth::routes();
-
+    Route::resource('report', 'DailyReportController');
     Route::get('/', function () {
         if (Auth::check()) {
             return redirect()->route('home');
@@ -90,4 +92,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('/register/', 'Auth\AdminRegisterController@showAdminRegistrationForm');
 
 });
-

@@ -4,7 +4,7 @@ $(function(){
   $('.category-wrap .btn').on('click', function(){
     var category_id = $(this).attr('id');
     $('#category-val').val(category_id);
-    $('form').submit();
+    $('form').submit(); //デバックバーを作成した影響で<form>が二つになった影響で、'form'で指定できなければclassもしくはidで指定してあげる必要がある。
   });
 
   // Admin個別勤怠作成
