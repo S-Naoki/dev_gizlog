@@ -5,13 +5,12 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => ['report.update', $dailyReport->id],  'method' => 'PUT']) !!}
-      {!! Form::hidden('user_id', $dailyReport->user_id, ['class' => 'form-control']) !!}
       <div class="form-group form-size-small @if($errors->has('reporting_time')) has-error @endif ">
-        {!! Form::input('date', 'reporting_time', $dailyReport->reporting_time->format('Y-m-d'), ['class' => 'form-control']) !!}
+        {!! Form::date('reporting_time', $dailyReport->reporting_time->format('Y-m-d'), ['class' => 'form-control']) !!}
       <span class="help-block">{{ $errors->first('reporting_time') }}</span>
       </div>
       <div class="form-group @if($errors->has('title')) has-error @endif ">
-        {!! Form::input('text', 'title', $dailyReport->title, ['class' => 'form-control', 'placeholder' => 'Title'])!!}
+        {!! Form::text('title', $dailyReport->title, ['class' => 'form-control', 'placeholder' => 'Title'])!!}
       <span class="help-block">{{ $errors->first('title') }}</span>
       </div>
       <div class="form-group @if($errors->has('content')) has-error @endif ">
