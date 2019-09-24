@@ -32,7 +32,6 @@ class DailyReportController extends Controller
                         ->where('user_id', Auth::id())
                         ->get();
             $request->flash(); 
-            //バリデーションに引っかからなかった時に実行される。
         } else {
         $dailyReports = $this->dailyReport->getByUserId(Auth::id());
         }
