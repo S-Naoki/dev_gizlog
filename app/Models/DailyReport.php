@@ -24,8 +24,6 @@ class DailyReport extends Model
     
     protected $dates = [
         'reporting_time',
-        'created_at',
-        'updated_at',
         'deleted_at'
-    ];    
+    ];
 }
