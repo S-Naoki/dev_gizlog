@@ -10,17 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class DailyReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     private $dailyReport;
     
     public function __construct(DailyReport $instanceClass)
     {
         $this->dailyReport = $instanceClass;
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     
     public function index(Request $request)
     {
