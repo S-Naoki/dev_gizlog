@@ -13,7 +13,7 @@ class DailyReportsSeeder extends Seeder
     {
         DB::table('daily_reports')->insert([
             'id' => 2,
-            'user_id' => 2,
+            'user_id' => 4,
             'title' => 'テストタイトル',
             'content' => 'テスト内容',
             'reporting_time' => Carbon::create(2019,1,2),
