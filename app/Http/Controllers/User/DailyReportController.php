@@ -13,9 +13,9 @@ class DailyReportController extends Controller
     
     private $dailyReport;
     
-    public function __construct(DailyReport $instanceClass)
+    public function __construct(DailyReport $dailyReport)
     {
-        $this->dailyReport = $instanceClass;
+        $this->dailyReport = $dailyReport;
     }
     
     /**
@@ -31,7 +31,6 @@ class DailyReportController extends Controller
             $dailyReports = $this->dailyReport->searchReport($input);
             $request->flash(); 
         } else {
-        // dd(123);
         $dailyReports = $this->dailyReport->getByUserId(Auth::id());
         }
         return view('user.daily_report.index', compact('dailyReports'));
