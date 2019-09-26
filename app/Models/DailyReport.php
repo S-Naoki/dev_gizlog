@@ -16,23 +16,20 @@ class DailyReport extends Model
         'content',
         'reporting_time'
     ];
+    protected $dates = [
+        'reporting_time',
+        'deleted_at'
+    ];
     
     public function getByUserId($id)
     {
         return $this->where('user_id', $id)->get();
     }
     
-    public function searchReport($input)
+    public function searchDailyReportByMonth($input)
     {
         if (!empty($input['search_month']) || $input['search_month'] === null) {
-            return $this->where('reporting_time', 'like', '%'.$input['search_month'].'%')->where('user_id', Auth::id())->get();
+            return $this->where('reporting_time', 'like', '%'.$input['search_month'].'%')->get();
         }
     }
-    
-    protected $dates = [
-        'reporting_time',
-        'deleted_at'
-    ];
-    
-    
 }
