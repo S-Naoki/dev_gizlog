@@ -15,6 +15,7 @@ class DailyReportController extends Controller
     
     public function __construct(DailyReport $dailyReport)
     {
+        $this->middleware('auth');
         $this->dailyReport = $dailyReport;
     }
     
@@ -24,14 +25,14 @@ class DailyReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index(Request $request)
+    public function index(DailyReportRequest $request)
     {
         $input = $request->all();
         if (!empty($input)) {
-            $dailyReports = $this->dailyReport->searchReport($input);
+            $dailyReports = $this->dailyReport->searchDailyReportByMonth(Auth::id());
             $request->flash(); 
         } else {
-        $dailyReports = $this->dailyReport->getByUserId(Auth::id());
+            $dailyReports = $this->dailyReport->getByUserId(Auth::id());
         }
         return view('user.daily_report.index', compact('dailyReports'));
     }
