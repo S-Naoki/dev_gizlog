@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
-use Illuminate\Http\Request;
 use App\Models\DailyReport;
 use Illuminate\Support\Facades\Auth;
 
