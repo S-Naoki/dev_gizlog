@@ -29,7 +29,7 @@ class DailyReportController extends Controller
     {
         $input = $request->all();
         if (!empty($input)) {
-            $dailyReports = $this->dailyReport->searchDailyReportByMonth(Auth::id());
+            $dailyReports = $this->dailyReport->searchDailyReportByMonth(Auth::id(), $input);
             $request->flash(); 
         } else {
             $dailyReports = $this->dailyReport->getByUserId(Auth::id());
