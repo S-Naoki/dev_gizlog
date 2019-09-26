@@ -23,9 +23,9 @@ class DailyReportRequest extends FormRequest
     public function rules()
     {
         return [
-        'reporting_time' => 'required|date|before:now',
-        'title' => 'required|max:50',
-        'content' => 'required|max:1000',
+        'reporting_time' => 'sometimes|required|date|before:now',
+        'title' => 'sometimes|required|max:50',
+        'content' => 'sometimes|required|max:1000',
         ];
     }
 
