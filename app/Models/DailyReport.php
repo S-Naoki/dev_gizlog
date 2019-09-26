@@ -26,10 +26,12 @@ class DailyReport extends Model
         return $this->where('user_id', $id)->get();
     }
     
-    public function searchDailyReportByMonth($input)
+    public function searchDailyReportByMonth($id, $input)
     {
-        if (!empty($input['search_month']) || $input['search_month'] === null) {
-            return $this->where('reporting_time', 'like', '%'.$input['search_month'].'%')->get();
+        if ($input['search_month'] === null) {
+            return $this->getByUserId(Auth::id());
+        } else {
+            return $this->where('reporting_time', 'like', '%'.$input['search_month'].'%')->where('user_id', $id)->get();
         }
     }
 }
