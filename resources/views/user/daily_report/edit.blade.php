@@ -14,7 +14,7 @@
       <span class="help-block">{{ $errors->first('title') }}</span>
       </div>
       <div class="form-group @if($errors->has('content')) has-error @endif ">
-        {!! Form::textarea('content', '本文', ['class' => 'form-control', 'placeholder' => '本文']) !!}
+        {!! Form::textarea('content', $dailyReport->content, ['class' => 'form-control', 'placeholder' => '本文']) !!}
       <span class="help-block">{{ $errors->first('content') }}</span>
       </div>
       {!! Form::submit('Update', ['class' => 'btn btn-success pull-right']) !!}
