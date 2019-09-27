@@ -15,7 +15,6 @@
 
 Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Auth::routes();
-    Route::resource('report', 'DailyReportController');
     Route::get('/', function () {
         if (Auth::check()) {
             return redirect()->route('home');
@@ -47,7 +46,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
-
+    Route::resource('report', 'DailyReportController');
 });
 
 
