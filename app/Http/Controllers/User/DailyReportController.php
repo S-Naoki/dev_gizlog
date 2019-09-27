@@ -23,7 +23,6 @@ class DailyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index(DailyReportRequest $request)
     {
         $input = $request->all();
