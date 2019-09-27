@@ -28,7 +28,7 @@ class DailyReport extends Model
     
     public function searchDailyReportByMonth($id, $input)
     {
-        if ($input['search_month'] === null) {
+        if (is_null($input['search_month'])) {
             return $this->getByUserId(Auth::id());
         } else {
             return $this->where('reporting_time', 'like', '%'.$input['search_month'].'%')->where('user_id', $id)->get();
