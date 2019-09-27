@@ -18,9 +18,9 @@ class DailyReportsSeeder extends Seeder
                 'user_id' => 1,
                 'title' => '朝ごはん',
                 'content' => '今日は朝ごはんを食べました。',
-                'reporting_time' => Carbon::create(2019,1,2),
+                'reporting_time' => Carbon::create(2019,1,1),
                 'created_at' => Carbon::create(2019, 1, 1),
-                'updated_at' => Carbon::create(2018, 1, 2)
+                'updated_at' => Carbon::create(2019, 1, 2)
     
             ],
             [
@@ -30,7 +30,8 @@ class DailyReportsSeeder extends Seeder
                 'content' => 'テスト内容',
                 'reporting_time' => Carbon::create(2019,1,2),
                 'created_at' => Carbon::create(2019, 1, 3),
-                'updated_at' => Carbon::create(2018, 1, 4)
-            ]]);
+                'updated_at' => Carbon::create(2019, 1, 4)
+            ]
+        ]);
     }
 }
