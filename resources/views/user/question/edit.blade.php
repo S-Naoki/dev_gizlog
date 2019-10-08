@@ -5,26 +5,24 @@
 
 <div class="main-wrap">
   <div class="container">
-    <form>
-      <div class="form-group">
-        <select name='tag_category_id' class = "form-control selectpicker form-size-small" id ="pref_id">
-          <option value=""></option>
-            <option value= ""></option>
-        </select>
-        <span class="help-block"></span>
+    {!! Form::open(['route' => ['question.confirm']]) !!}
+    {!! Form::hidden('confirm', 'edit') !!}
+    {!! Form::hidden('question_id', $question->id) !!}
+      <div class="form-group @if(!empty($errors->has('tag_category_id'))) has-error @endif">
+        {!! Form::select('tag_category_id', ['Select category', 'front', 'back', 'infra', 'others'], $question->tagCategory->id, ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
+        <span class="help-block">{{ $errors->first('tag_category_id') }}</span>
       </div>
-      <div class="form-group">
-        <input class="form-control" placeholder="title" name="title" type="text" value="">
-        <span class="help-block"></span>
+      <div class="form-group @if(!empty($errors->has('title'))) has-error @endif">
+        {!! Form::text('title', $question->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+        <span class="help-block">{{ $errors->first('title') }}</span>
       </div>
-      <div class="form-group">
-        <textarea class="form-control" placeholder="Please write down your question here..." name="content" cols="50" rows="10"></textarea>
-        <span class="help-block"></span>
+      <div class="form-group @if(!empty($errors->has('content'))) has-error @endif">
+        {!! Form::textarea('content', $question->content, ['class' => 'form-control', 'placeholder' => 'Please write down your question here...']) !!}
+        <span class="help-block">{{ $errors->first('content') }}</span>
       </div>
-      <input name="confirm" class="btn btn-success pull-right" type="submit" value="update">
-    </form>
+      {!! Form::submit('update', ['class' => 'btn btn-success pull-right']) !!}
+    {{ Form::close() }}
   </div>
 </div>
 
 @endsection
-
