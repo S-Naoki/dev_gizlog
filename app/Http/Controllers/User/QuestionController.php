@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\User\QuestionsRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Comment;
@@ -35,6 +36,7 @@ class QuestionController extends Controller
         $inputs = $request->all();
         $tagCategories = $request->tag_category_id;
         $questions = $this->question->searchQuestion($inputs, $tagCategories);
+        $request->flash();
         return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
     }
     /**
@@ -49,10 +51,10 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\QuestionsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionsRequest $request)
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
@@ -88,11 +90,11 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\QuestionsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionsRequest $request, $id)
     {
         $inputs = $request->all();
         $inputs['user_id'] = Auth::id();
@@ -114,7 +116,7 @@ class QuestionController extends Controller
     }
     
         
-    public function showConfirm(Request $request)
+    public function showConfirm(QuestionsRequest $request)
     {
         $tagCategoryName = $this->tagCategory->find($request->tag_category_id)->name;
         $inputs = $request->all();
