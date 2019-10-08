@@ -17,29 +17,28 @@
           <th class="col-xs-1"></th>
         </tr>
       </thead>
+      @foreach($questions as $question)
       <tbody>
         <tr class="row">
-          <td class="col-xs-2"></td>
-          <td class="col-xs-1"></td>
-          <td class="col-xs-5"></td>
-          <td class="col-xs-2"><span class="point-color"></span></td>
+          <td class="col-xs-2">{{ $question->created_at->format('Y-m-d') }}</td>
+          <td class="col-xs-1">{{ $question->tagCategory['name'] }}</td>
+          <td class="col-xs-5">{{ $question->title }}</td>
+          <td class="col-xs-2">{{ $question->comments->count() }}<span class="point-color"></span></td>
           <td class="col-xs-1">
-            <a class="btn btn-success" href="">
+            <a class="btn btn-success" href="{{ route('question.edit', ['id' => $question->id] ) }}">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
           </td>
           <td class="col-xs-1">
-            <form>
-              <button class="btn btn-danger" type="submit">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-            </form>
+            {!! Form::open(['route' => ['question.destroy', $question->id], 'method' => 'DELETE']) !!}
+              {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['class' => 'btn btn-danger', 'type' => 'submit']) !!}
+            {!! Form::close() !!}
           </td>
         </tr>
       </tbody>
+      @endforeach
     </table>
   </div>
 </div>
 
 @endsection
-
