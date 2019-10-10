@@ -52,7 +52,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('user.question.create');
+        $tagCategories = $this->tagCategory->all();
+        $tagCategoryArray = $this->fetchTagCategories($tagCategories);
+        return view('user.question.create', compact('tagCategoryArray'));
     }
     /**
      * 新たに作成された質問をデータベースに格納します。
@@ -89,8 +91,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
+        $tagCategories = $this->tagCategory->all();
+        $tagCategoryArray = $this->fetchTagCategories($tagCategories);
         $question = $this->question->find($id);
-        return view('user.question.edit', compact('question'));
+        return view('user.question.edit', compact('question', 'tagCategoryArray'));
     }
 
     /**
@@ -142,5 +146,13 @@ class QuestionController extends Controller
     {
         $questions = $this->question->fetchQuestionsByUserId(Auth::id());
         return view('user.question.mypage', compact('questions'));
+    }
+    
+    
+    public function fetchTagCategories($tagCategories)
+    {
+        return $tagCategories->pluck('name', 'id')
+                    ->prepend('Select Category', 0)
+                    ->all();
     }
 }
