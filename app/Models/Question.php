@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\TagCategory;
-use App\Models\Comment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
@@ -45,11 +42,11 @@ class Question extends Model
                     ->get();
     }
     
-    public function searchQuestion($inputs, $tagCategoryId)
+    public function searchQuestions($inputs, $tagCategoryId)
     {
         if (!empty($inputs)) {
-            $questions = $this->searchQuestionByKeyWord($inputs['search_word'])
-                            ->searchQuestionByTagCategory($inputs, $tagCategoryId)
+            $questions = $this->searchQuestionsByKeyWord($inputs['search_word'])
+                            ->searchQuestionsByTagCategory($inputs, $tagCategoryId)
                             ->orderby('created_at', 'desc')
                             ->get();
         } else {
@@ -58,7 +55,7 @@ class Question extends Model
         return $questions;
     }
     
-    public function scopeSearchQuestionByTagCategory($query, $inputs, $tagCategoryId)
+    public function scopeSearchQuestionsByTagCategory($query, $inputs, $tagCategoryId)
     {
         if (!empty($inputs['tag_category_id'])) {
             return $query->where('tag_category_id', $tagCategoryId);
@@ -66,7 +63,7 @@ class Question extends Model
 
     }
     
-    public function scopeSearchQuestionByKeyWord($query, $searchWord)
+    public function scopeSearchQuestionsByKeyWord($query, $searchWord)
     {
         if (!empty($searchWord)) {
             return $query->where('title', 'like', '%' .$searchWord. '%');
