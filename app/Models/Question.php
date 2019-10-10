@@ -43,8 +43,6 @@ class Question extends Model
         return $this->where('user_id', $id)
                     ->orderby('created_at', 'asc')
                     ->get();
-                    
-        
     }
     
     public function searchQuestion($inputs, $tagCategoryId)
@@ -70,8 +68,8 @@ class Question extends Model
     
     public function scopeSearchQuestionByKeyWord($query, $searchWord)
     {
-        return $query->where('title', 'like', '%' .$searchWord. '%');
+        if (!empty($searchWord)) {
+            return $query->where('title', 'like', '%' .$searchWord. '%');
+        }
     }
-
 }
-
