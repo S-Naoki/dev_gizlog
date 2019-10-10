@@ -8,21 +8,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Comment;
 use App\Models\tagCategory; 
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     protected $question;
     protected $comment;
     protected $tagCategory;
     
-    
+    /**
+     * コンストラクタメソッド
+     *
+     * @param Question $question
+     * @param Comment $comment
+     * @param tagCategory $tagCategory
+     */
     public function __construct(Question $question, Comment $comment, tagCategory $tagCategory)
     {
         $this->middleware('auth');
@@ -30,7 +31,12 @@ class QuestionController extends Controller
         $this->comment = $comment;
         $this->tagCategory = $tagCategory;
     }
-    
+    /**
+     * 質問一覧画面を表示します。
+     *
+     * @param Illuminate\Http\Request $request
+     * @return void
+     */
     public function index(Request $request)
     {
         $inputs = $request->all();
@@ -40,7 +46,7 @@ class QuestionController extends Controller
         return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
     }
     /**
-     * Show the form for creating a new resource.
+     * 質問を新規作成するためのフォームを表示します。
      *
      * @return \Illuminate\Http\Response
      */
@@ -49,7 +55,7 @@ class QuestionController extends Controller
         return view('user.question.create');
     }
     /**
-     * Store a newly created resource in storage.
+     * 新たに作成された質問をデータベースに格納します。
      *
      * @param  \App\Http\Requests\User\QuestionsRequest  $request
      * @return \Illuminate\Http\Response
@@ -63,7 +69,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 質問詳細画面を表示します。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -76,7 +82,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 質問を編集するためのフォームを表示します。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -88,7 +94,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 編集した質問内容を更新します。
      *
      * @param  \App\Http\Requests\User\QuestionsRequest  $request
      * @param  int  $id
@@ -103,7 +109,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * データベースから質問を削除します。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -114,7 +120,12 @@ class QuestionController extends Controller
         return redirect()->route('question.mypage');
     }
     
-        
+    /**
+     * 確認画面を表示します。
+     *
+     * @param \App\Http\Requests\User\QuestionsRequest $request
+     * @return void
+     */
     public function showConfirmation(QuestionsRequest $request)
     {
         $tagCategoryName = $this->tagCategory->find($request->tag_category_id)->name;
@@ -122,6 +133,11 @@ class QuestionController extends Controller
         return view('user.question.confirm', compact('tagCategoryName', 'inputs'));
     }
 
+    /**
+     * 自分の質問だけのマイページを表示します。
+     *
+     * @return void
+     */
     public function showMypage()
     {
         $questions = $this->question->fetchQuestionsByUserId(Auth::id());

@@ -11,11 +11,23 @@ class CommentController extends Controller
 {
     protected $comment;
     
+    /**
+     * コンストラクタメソッド
+     *
+     * @param Comment $comment
+     */
     public function __construct(Comment $comment)
     {
         $this->middleware('auth');
         $this->comment = $comment;
     }
+    
+    /**
+     * 作成されたコメントをデータベースに格納します。
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         $inputs = $request->all();
