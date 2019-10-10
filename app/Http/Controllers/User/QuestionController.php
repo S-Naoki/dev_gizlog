@@ -35,16 +35,16 @@ class QuestionController extends Controller
     /**
      * 質問一覧画面を表示します。
      *
-     * @param Illuminate\Http\Request $request
+     * @param Request $request
      * @return void
      */
     public function index(Request $request)
     {
         $inputs = $request->all();
-        $tagCategories = $request->tag_category_id;
-        $questions = $this->question->searchQuestion($inputs, $tagCategories);
+        $tagCategory = $request->tag_category_id;
+        $questions = $this->question->searchQuestions($inputs, $tagCategory);
         $request->flash();
-        return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
+        return view('user.question.index', compact('inputs', 'tagCategory', 'questions'));
     }
     
     /**
@@ -62,7 +62,7 @@ class QuestionController extends Controller
     /**
      * 新たに作成された質問をデータベースに格納します。
      *
-     * @param  \App\Http\Requests\User\QuestionsRequest  $request
+     * @param  QuestionsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionsRequest $request)
@@ -103,7 +103,7 @@ class QuestionController extends Controller
     /**
      * 編集した質問内容を更新します。
      *
-     * @param  \App\Http\Requests\User\QuestionsRequest  $request
+     * @param  QuestionsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -130,7 +130,7 @@ class QuestionController extends Controller
     /**
      * 確認画面を表示します。
      *
-     * @param \App\Http\Requests\User\QuestionsRequest $request
+     * @param QuestionsRequest $request
      * @return void
      */
     public function showConfirmation(QuestionsRequest $request)
@@ -152,7 +152,7 @@ class QuestionController extends Controller
     }
     
     
-    public function fetchTagCategories($tagCategories)
+    private function fetchTagCategories($tagCategories)
     {
         return $tagCategories->pluck('name', 'id')
                     ->prepend('Select Category', 0)
