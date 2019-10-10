@@ -15,7 +15,6 @@ class Comment extends Model
         'question_id',
         'comment'
     ];
-
     
     public function user ()
     {
