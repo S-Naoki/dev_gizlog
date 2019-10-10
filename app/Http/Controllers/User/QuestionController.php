@@ -99,7 +99,6 @@ class QuestionController extends Controller
         $inputs = $request->all();
         $inputs['user_id'] = Auth::id();
         $this->question->find($id)->update($inputs);
-        // dd($this->question->find($id));
         return redirect()->route('question.mypage');
     }
 
