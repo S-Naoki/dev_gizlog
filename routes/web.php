@@ -42,7 +42,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::resource('report', DailyReportController::class);
     
-    Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@showConfirm']);
+    Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@showConfirmation']);
     Route::get('question/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@showMypage']);
     Route::post('question/comment', ['as' => 'comment.store', 'uses' => 'CommentController@store']);
     Route::resource('question', QuestionController::class);

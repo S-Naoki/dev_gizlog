@@ -115,7 +115,7 @@ class QuestionController extends Controller
     }
     
         
-    public function showConfirm(QuestionsRequest $request)
+    public function showConfirmation(QuestionsRequest $request)
     {
         $tagCategoryName = $this->tagCategory->find($request->tag_category_id)->name;
         $inputs = $request->all();
