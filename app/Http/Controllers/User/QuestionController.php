@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\User\QuestionsRequest;
+use App\Http\Requests\User\SearchQuestionsRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Comment;
@@ -38,7 +39,7 @@ class QuestionController extends Controller
      * @param Request $request
      * @return void
      */
-    public function index(Request $request)
+    public function index(SearchQuestionsRequest $request)
     {
         $inputs = $request->all();
         $tagCategory = $request->tag_category_id;
