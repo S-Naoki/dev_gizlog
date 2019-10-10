@@ -52,6 +52,7 @@ class Question extends Model
         if (!empty($inputs)) {
             $questions = $this->searchQuestionByKeyWord($inputs['search_word'])
                             ->searchQuestionByTagCategory($inputs, $tagCategoryId)
+                            ->orderby('created_at', 'desc')
                             ->get();
         } else {
             $questions = $this->all()->sortBy('created_at');
@@ -62,16 +63,14 @@ class Question extends Model
     public function scopeSearchQuestionByTagCategory($query, $inputs, $tagCategoryId)
     {
         if (!empty($inputs['tag_category_id'])) {
-            return $query->where('tag_category_id', $tagCategoryId)
-            ->orderby('created_at', 'asc');
+            return $query->where('tag_category_id', $tagCategoryId);
         }
 
     }
     
     public function scopeSearchQuestionByKeyWord($query, $searchWord)
     {
-        return $query->where('title', 'like', '%' .$searchWord. '%')
-        ->orderby('created_at', 'asc');
+        return $query->where('title', 'like', '%' .$searchWord. '%');
     }
 
 }
