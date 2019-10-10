@@ -31,6 +31,7 @@ class QuestionController extends Controller
         $this->comment = $comment;
         $this->tagCategory = $tagCategory;
     }
+    
     /**
      * 質問一覧画面を表示します。
      *
@@ -45,6 +46,7 @@ class QuestionController extends Controller
         $request->flash();
         return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
     }
+    
     /**
      * 質問を新規作成するためのフォームを表示します。
      *
@@ -56,6 +58,7 @@ class QuestionController extends Controller
         $tagCategoryArray = $this->fetchTagCategories($tagCategories);
         return view('user.question.create', compact('tagCategoryArray'));
     }
+    
     /**
      * 新たに作成された質問をデータベースに格納します。
      *
