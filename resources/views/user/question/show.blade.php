@@ -32,7 +32,7 @@
             <p>{{ $comment->user->name }}</p>
             <p class="comment-date">{{ $comment->created_at }}</p>
           </div>
-          <div class="comment-body">{{ $comment->comment }}</div>
+          <div class="comment-body">{!! nl2br(e($comment->comment)) !!}</div>
         </div>
       @endforeach
     </div>
