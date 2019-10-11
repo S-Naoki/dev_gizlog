@@ -50,7 +50,7 @@ class Question extends Model
                             ->orderby('created_at', 'desc')
                             ->get();
         } else {
-            $questions = $this->all()->sortBy('created_at');
+            $questions = $this->all()->sortByDesc('created_at');
         }
         return $questions;
     }
