@@ -151,8 +151,7 @@ class QuestionController extends Controller
         $questions = $this->question->fetchQuestionsByUserId(Auth::id());
         return view('user.question.mypage', compact('questions'));
     }
-    
-    
+        
     private function fetchTagCategories($tagCategories)
     {
         return $tagCategories->pluck('name', 'id')
