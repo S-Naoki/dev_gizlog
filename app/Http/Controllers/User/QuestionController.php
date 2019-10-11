@@ -152,6 +152,12 @@ class QuestionController extends Controller
         return view('user.question.mypage', compact('questions'));
     }
         
+    /**
+     * collectionからカテゴリ名とカテゴリidを取得します。
+     *
+     * @param $tagCategories
+     * @return Array
+     */
     private function fetchTagCategories($tagCategories)
     {
         return $tagCategories->pluck('name', 'id')
