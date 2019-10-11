@@ -38,7 +38,7 @@ class Question extends Model
     public function fetchQuestionsByUserId($id)
     {
         return $this->where('user_id', $id)
-                    ->orderby('created_at', 'asc')
+                    ->orderby('created_at', 'desc')
                     ->get();
     }
     
