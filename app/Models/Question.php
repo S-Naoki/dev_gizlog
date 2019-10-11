@@ -45,19 +45,17 @@ class Question extends Model
     public function searchQuestions($inputs, $tagCategoryId)
     {
         if (!empty($inputs)) {
-            $questions = $this->searchQuestionsByKeyWord($inputs['search_word'])
-                            ->searchQuestionsByTagCategory($inputs, $tagCategoryId)
-                            ->orderby('created_at', 'desc')
-                            ->get();
-        } else {
-            $questions = $this->all()->sortByDesc('created_at');
+            return $this->searchQuestionsByKeyWord($inputs['search_word'])
+                        ->searchQuestionsByTagCategory($inputs['tag_category_id'], $tagCategoryId)
+                        ->orderby('created_at', 'desc')
+                        ->get();
         }
-        return $questions;
+        return $this->all()->sortByDesc('created_at');
     }
     
-    public function scopeSearchQuestionsByTagCategory($query, $inputs, $tagCategoryId)
+    public function scopeSearchQuestionsByTagCategory($query, $tagCategoryId)
     {
-        if (!empty($inputs['tag_category_id'])) {
+        if (!empty($tagCategoryId)) {
             return $query->where('tag_category_id', $tagCategoryId);
         }
 
