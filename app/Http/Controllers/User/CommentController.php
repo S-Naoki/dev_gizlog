@@ -24,7 +24,7 @@ class CommentController extends Controller
     }
     
     /**
-     * 作成されたコメントをデータベースに格納します。
+     * 作成されたコメントをデータベースに格納。
      *
      * @param Request $request
      * @return void

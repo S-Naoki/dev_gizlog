@@ -34,7 +34,7 @@ class QuestionController extends Controller
     }
     
     /**
-     * 質問一覧画面を表示します。
+     * 質問一覧画面を表示。
      *
      * @param Request $request
      * @return void
@@ -49,7 +49,7 @@ class QuestionController extends Controller
     }
     
     /**
-     * 質問を新規作成するためのフォームを表示します。
+     * 質問を新規作成するためのフォームを表示。
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,7 +61,7 @@ class QuestionController extends Controller
     }
     
     /**
-     * 新たに作成された質問をデータベースに格納します。
+     * 新たに作成された質問をデータベースに格納。
      *
      * @param  QuestionsRequest  $request
      * @return \Illuminate\Http\Response
@@ -75,7 +75,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * 質問詳細画面を表示します。
+     * 質問詳細画面を表示。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -88,7 +88,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * 質問を編集するためのフォームを表示します。
+     * 質問を編集するためのフォームを表示。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -102,7 +102,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * 編集した質問内容を更新します。
+     * 編集した質問内容を更新。
      *
      * @param  QuestionsRequest  $request
      * @param  int  $id
@@ -112,12 +112,12 @@ class QuestionController extends Controller
     {
         $inputs = $request->all();
         $inputs['user_id'] = Auth::id();
-        $this->question->find($id)->update($inputs);
+        $this->question->find($id)->fill($inputs)->save();
         return redirect()->route('question.mypage');
     }
 
     /**
-     * データベースから質問を削除します。
+     * データベースから質問を削除。
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -129,7 +129,7 @@ class QuestionController extends Controller
     }
     
     /**
-     * 確認画面を表示します。
+     * 確認画面を表示。
      *
      * @param QuestionsRequest $request
      * @return void
@@ -142,7 +142,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * 自分の質問だけのマイページを表示します。
+     * マイページを表示。
      *
      * @return void
      */
@@ -153,7 +153,7 @@ class QuestionController extends Controller
     }
         
     /**
-     * collectionからカテゴリ名とカテゴリidを取得します。
+     * collectionからカテゴリ名とカテゴリidを取得。
      *
      * @param $tagCategories
      * @return Array
@@ -161,7 +161,7 @@ class QuestionController extends Controller
     private function fetchTagCategories($tagCategories)
     {
         return $tagCategories->pluck('name', 'id')
-                    ->prepend('Select Category', 0)
-                    ->all();
+                             ->prepend('Select Category', 0)
+                             ->all();
     }
 }
