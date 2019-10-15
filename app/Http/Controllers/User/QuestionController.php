@@ -43,7 +43,7 @@ class QuestionController extends Controller
     {
         $inputs = $request->all();
         $tagCategories = $this->tagCategory->all();
-        $questions = $this->question->searchQuestions($inputs, $tagCategories);
+        $questions = $this->question->searchQuestions($inputs);
         $request->flash();
         return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
     }
@@ -150,18 +150,5 @@ class QuestionController extends Controller
     {
         $questions = $this->question->fetchQuestionsByUserId(Auth::id());
         return view('user.question.mypage', compact('questions'));
-    }
-        
-    /**
-     * collectionからカテゴリ名とカテゴリidを取得。
-     *
-     * @param $tagCategories
-     * @return Array
-     */
-    private function fetchTagCategories($tagCategories)
-    {
-        return $tagCategories->pluck('name', 'id')
-                             ->prepend('Select Category', 0)
-                             ->all();
     }
 }

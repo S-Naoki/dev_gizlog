@@ -42,11 +42,11 @@ class Question extends Model
                     ->get();
     }
     
-    public function searchQuestions($inputs, $tagCategoryId)
+    public function searchQuestions($inputs)
     {
         if (!empty($inputs)) {
             return $this->searchQuestionsByKeyWord($inputs['search_word'])
-                        ->searchQuestionsByTagCategory($inputs['tag_category_id'], $tagCategoryId)
+                        ->searchQuestionsByTagCategory($inputs['tag_category_id'])
                         ->orderby('created_at', 'desc')
                         ->get();
         }
