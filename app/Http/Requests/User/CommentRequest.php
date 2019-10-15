@@ -32,7 +32,7 @@ class CommentRequest extends FormRequest
     {
         return [
             'comment.required' => '入力必須の項目です。',
-            'comment.max'      => '1000文字以内で入力してください。'
+            'comment.max'      => ':max文字以内で入力してください。'
         ];
     }
 }

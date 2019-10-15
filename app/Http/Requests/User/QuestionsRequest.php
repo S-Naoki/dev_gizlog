@@ -24,7 +24,7 @@ class QuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag_category_id' => 'sometimes|required|exists:tag_categories,id|integer|',
+            'tag_category_id' => 'sometimes|exists:tag_categories,id|integer|',
             'title'           => "required|max:50",
             'content'         => "required|max:1000"
         ];
@@ -33,9 +33,9 @@ class QuestionsRequest extends FormRequest
     public function messages()
     {
         return [
-            'required'    => '入力必須の項目です。',
-            'tag_category_id.exists' => 'カテゴリーを選択してください。',
-            'max'   => ":max文字以内で入力してください。",
+            'required'               => '入力必須の項目です。',
+            'tag_category_id.exists' => '入力必須の項目です。',
+            'max'                    => ":max文字以内で入力してください。",
         ];
     }
 }

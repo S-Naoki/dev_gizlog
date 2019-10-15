@@ -32,7 +32,7 @@ class SearchQuestionsRequest extends FormRequest
     public function messages()
     {
         return [
-            'search_word.max' => '50字以内で入力してください。'
+            'search_word.max' => ':max文字以内で入力してください。'
         ];
     }
 }
