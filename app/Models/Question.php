@@ -58,7 +58,6 @@ class Question extends Model
         if (!empty($tagCategoryId)) {
             return $query->where('tag_category_id', $tagCategoryId);
         }
-
     }
     
     public function scopeSearchQuestionsByKeyWord($query, $searchWord)
