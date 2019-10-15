@@ -24,7 +24,7 @@ class SearchQuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag_category_id' => 'sometimes|integer',
+            'tag_category_id' => 'sometimes|exists:tag_categories,id|integer',
             'search_word'     => 'max:50'
         ];
     }
