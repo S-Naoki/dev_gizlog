@@ -42,10 +42,10 @@ class QuestionController extends Controller
     public function index(SearchQuestionsRequest $request)
     {
         $inputs = $request->all();
-        $tagCategory = $request->tag_category_id;
-        $questions = $this->question->searchQuestions($inputs, $tagCategory);
+        $tagCategories = $this->tagCategory->all();
+        $questions = $this->question->searchQuestions($inputs, $tagCategories);
         $request->flash();
-        return view('user.question.index', compact('inputs', 'tagCategory', 'questions'));
+        return view('user.question.index', compact('inputs', 'tagCategories', 'questions'));
     }
     
     /**
