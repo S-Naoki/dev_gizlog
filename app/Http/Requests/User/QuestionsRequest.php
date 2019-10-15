@@ -20,13 +20,13 @@ class QuestionsRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     */    
     public function rules()
     {
         return [
-            'tag_category_id' => 'sometimes|exists:tag_categories,id|integer|required|min:1',
-            'title'           => 'required|max:50',
-            'content'         => 'required|max:1000'
+            'tag_category_id' => 'sometimes|required|exists:tag_categories,id|integer|',
+            'title'           => "required|max:50",
+            'content'         => "required|max:1000"
         ];
     }
 
@@ -34,9 +34,8 @@ class QuestionsRequest extends FormRequest
     {
         return [
             'required'    => '入力必須の項目です。',
-            'tag_category_id.min' => 'カテゴリーを選択してください。',
-            'title.max'   => '50文字以内で入力してください。',
-            'content.max' => '1000文字以内で入力してください。'
+            'tag_category_id.exists' => 'カテゴリーを選択してください。',
+            'max'   => ":max文字以内で入力してください。",
         ];
     }
 }
