@@ -35,6 +35,5 @@ class CommentController extends Controller
         $inputs['user_id'] = Auth::id();
         $this->comment->create($inputs);
         return redirect()->route('question.show', $request->question_id);
-        
     }
 }
