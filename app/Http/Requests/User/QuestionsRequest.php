@@ -34,7 +34,7 @@ class QuestionsRequest extends FormRequest
     {
         return [
             'required'               => '入力必須の項目です。',
-            'tag_category_id.exists' => '入力必須の項目です。',
+            'tag_category_id.exists' => 'カテゴリーを選択して下さい。',
             'max'                    => ":max文字以内で入力してください。",
         ];
     }
