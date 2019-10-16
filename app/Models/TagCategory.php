@@ -21,9 +21,9 @@ class TagCategory extends Model
      */
     public function fetchTagCategories($tagCategories)
     {
-               $tagCategories->pluck('name', 'id')
-                             ->prepend('Select Category', 0)
-                             ->all();
+            return $tagCategories->pluck('name', 'id')
+                                 ->prepend('Select Category', 0)
+                                 ->all();
     }
 }
 
