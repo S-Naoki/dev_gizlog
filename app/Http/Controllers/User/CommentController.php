@@ -27,7 +27,6 @@ class CommentController extends Controller
      *
      * @param CommentRequest $request
      * @return \Illuminate\Http\Response
-
      */
     public function store(CommentRequest $request)
     {
