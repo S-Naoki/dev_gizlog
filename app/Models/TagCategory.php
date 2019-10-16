@@ -12,5 +12,18 @@ class TagCategory extends Model
     protected $fillable = ['name'];
     protected $table = 'tag_categories';
     protected $dates = ['deleted_at'];
+            
+    /**
+     * collectionからカテゴリ名とカテゴリidを取得。
+     *
+     * @param $tagCategories
+     * @return Array
+     */
+    public function fetchTagCategories($tagCategories)
+    {
+               $tagCategories->pluck('name', 'id')
+                             ->prepend('Select Category', 0)
+                             ->all();
+    }
 }
 
