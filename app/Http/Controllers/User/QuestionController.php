@@ -36,7 +36,7 @@ class QuestionController extends Controller
      * 質問一覧画面を表示。
      *
      * @param SearchQuestionsRequest $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function index(SearchQuestionsRequest $request)
     {
