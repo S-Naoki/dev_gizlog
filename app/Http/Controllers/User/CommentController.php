@@ -27,7 +27,8 @@ class CommentController extends Controller
      * 作成されたコメントをデータベースに格納。
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\Response
+
      */
     public function store(CommentRequest $request)
     {

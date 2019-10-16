@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\User\QuestionsRequest;
 use App\Http\Requests\User\SearchQuestionsRequest;
 use App\Http\Controllers\Controller;
@@ -36,7 +35,7 @@ class QuestionController extends Controller
     /**
      * 質問一覧画面を表示。
      *
-     * @param Request $request
+     * @param SearchQuestionsRequest $request
      * @return void
      */
     public function index(SearchQuestionsRequest $request)
@@ -56,7 +55,7 @@ class QuestionController extends Controller
     public function create()
     {
         $tagCategories = $this->tagCategory->all();
-        $tagCategoryArray = $this->fetchTagCategories($tagCategories);
+        $tagCategoryArray = $this->tagCategory->fetchTagCategories($tagCategories);
         return view('user.question.create', compact('tagCategoryArray'));
     }
     
@@ -96,7 +95,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $tagCategories = $this->tagCategory->all();
-        $tagCategoryArray = $this->fetchTagCategories($tagCategories);
+        $tagCategoryArray = $this->tagCategory->fetchTagCategories($tagCategories);
         $question = $this->question->find($id);
         return view('user.question.edit', compact('question', 'tagCategoryArray'));
     }
@@ -132,7 +131,7 @@ class QuestionController extends Controller
      * 確認画面を表示。
      *
      * @param QuestionsRequest $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function showConfirmation(QuestionsRequest $request)
     {
@@ -144,7 +143,7 @@ class QuestionController extends Controller
     /**
      * マイページを表示。
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function showMypage()
     {
