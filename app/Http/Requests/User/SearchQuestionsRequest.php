@@ -3,6 +3,8 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Models\TagCategory;
 
 class SearchQuestionsRequest extends FormRequest
 {
@@ -23,8 +25,14 @@ class SearchQuestionsRequest extends FormRequest
      */
     public function rules()
     {
+        $category_val = TagCategory::all()->pluck('id')->prepend(0);
+        
         return [
-            'tag_category_id' => 'sometimes|exists:tag_categories,id|integer',
+            'tag_category_id' => [
+                'sometimes',
+                'integer',
+                Rule::in($category_val)
+            ],
             'search_word'     => 'max:50'
         ];
     }
