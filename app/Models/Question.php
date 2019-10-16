@@ -46,7 +46,7 @@ class Question extends Model
     {
         if (!empty($inputs)) {
             return $this->searchQuestionsByKeyWord($inputs['search_word'])
-                        ->searchQuestionsByTagCategory($inputs['tag_category_id'])
+                        ->searchQuestionsByTagCategory($inputs['tag_category_name'])
                         ->orderby('created_at', 'desc')
                         ->get();
         }
