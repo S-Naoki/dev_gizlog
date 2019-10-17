@@ -8,6 +8,7 @@ use App\Models\TagCategory;
 
 class SearchQuestionsRequest extends FormRequest
 {
+    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -17,6 +18,15 @@ class SearchQuestionsRequest extends FormRequest
     {
         return true;
     }
+    
+    // public function validationData()
+    // {
+    //     $inputs = $this->all();
+    //     if ($inputs['search_category_id']) {
+    //         $inputs['search_category_id'] = (int)$inputs['search_category_id'];
+    //     }
+    //     return $inputs;
+    // }
 
     /**
      * Get the validation rules that apply to the request.
@@ -30,10 +40,11 @@ class SearchQuestionsRequest extends FormRequest
         return [
             'tag_category_id' => [
                 'sometimes',
-                'integer',
                 Rule::in($category_val)
             ],
-            'search_word'     => 'max:50'
+            'search_word'     => [
+                'max:50'
+            ]
         ];
     }
 
