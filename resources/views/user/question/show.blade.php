@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{{ $question->content }}</td>
+            <td class='td-text'>{!! nl2br(e($question->content)) !!}</td>
           </tr>
         </tbody>
       </table>
