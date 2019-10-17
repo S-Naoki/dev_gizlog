@@ -50,7 +50,6 @@
         @endforeach
       </tbody>
     </table>
-    <div aria-label="Page navigation example" class="text-center"></div>
   </div>
 </div>
 
