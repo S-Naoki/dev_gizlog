@@ -21,11 +21,11 @@ class CommentsTableSeeder extends Seeder
                 'updated_at'      => Carbon::create(2019,1,2)
             ],
             [
-                'user_id'           => 2,
-                'question_id'       => 2,
-                'comment'           => 'テストコメント2',
-                'created_at'        => Carbon::create(2019,2,1),
-                'updated_at'        => Carbon::create(2019,2,2)
+                'user_id'         => 2,
+                'question_id'     => 2,
+                'comment'         => 'テストコメント2',
+                'created_at'      => Carbon::create(2019,2,1),
+                'updated_at'      => Carbon::create(2019,2,2)
             ],
             [
                 'user_id'         => 3,
