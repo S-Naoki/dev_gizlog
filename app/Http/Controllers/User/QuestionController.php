@@ -55,7 +55,7 @@ class QuestionController extends Controller
     public function create()
     {
         $tagCategories = $this->tagCategory->all();
-        $tagCategoryArray = $this->tagCategory->fetchTagCategories($tagCategories);
+        $tagCategoryArray = $this->tagCategory->makeTagCategoryNames($tagCategories);
         return view('user.question.create', compact('tagCategoryArray'));
     }
     
@@ -81,7 +81,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question = $this->question->find($id);
+        $question = $this->question->with('comments.user')->find($id);
         $user = Auth::user();
         return view('user.question.show', compact('question', 'user'));
     }

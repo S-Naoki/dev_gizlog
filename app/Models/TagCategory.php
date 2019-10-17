@@ -19,7 +19,7 @@ class TagCategory extends Model
      * @param $tagCategories
      * @return Array
      */
-    public function fetchTagCategories($tagCategories)
+    public function makeTagCategoryNames($tagCategories)
     {
             return $tagCategories->pluck('name', 'id')
                                  ->prepend('Select Category', 0)
