@@ -18,15 +18,6 @@ class SearchQuestionsRequest extends FormRequest
     {
         return true;
     }
-    
-    // public function validationData()
-    // {
-    //     $inputs = $this->all();
-    //     if ($inputs['search_category_id']) {
-    //         $inputs['search_category_id'] = (int)$inputs['search_category_id'];
-    //     }
-    //     return $inputs;
-    // }
 
     /**
      * Get the validation rules that apply to the request.
