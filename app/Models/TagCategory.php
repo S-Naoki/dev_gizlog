@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TagCategory extends Model
 {
+    const SELECT_CATEGORY = 'Select Category';
+    
     use SoftDeletes;
 
     protected $fillable = ['name'];
@@ -22,7 +24,7 @@ class TagCategory extends Model
     public function makeTagCategoryNames($tagCategories)
     {
             return $tagCategories->pluck('name', 'id')
-                                 ->prepend('Select Category', 0)
+                                 ->prepend(self::SELECT_CATEGORY)
                                  ->all();
     }
 }
