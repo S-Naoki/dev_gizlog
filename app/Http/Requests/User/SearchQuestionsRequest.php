@@ -25,12 +25,11 @@ class SearchQuestionsRequest extends FormRequest
      */
     public function rules()
     {
-        $category_val = TagCategory::all()->pluck('id')->prepend(0);
         
         return [
-            'tag_category_id' => [
+            'search_category_id' => [
                 'sometimes',
-                Rule::in($category_val)
+                'exists:tag_categories,id'
             ],
             'search_word'     => [
                 'max:50'
