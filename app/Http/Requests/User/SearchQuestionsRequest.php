@@ -3,8 +3,6 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use App\Models\TagCategory;
 
 class SearchQuestionsRequest extends FormRequest
 {
@@ -27,13 +25,8 @@ class SearchQuestionsRequest extends FormRequest
     {
         
         return [
-            'search_category_id' => [
-                'sometimes',
-                'exists:tag_categories,id'
-            ],
-            'search_word'     => [
-                'max:50'
-            ]
+            'search_category_id' => 'nullable|exists:tag_categories,id',
+            'search_word'        => 'max:50'
         ];
     }
 
