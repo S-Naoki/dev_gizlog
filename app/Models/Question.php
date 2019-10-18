@@ -54,8 +54,8 @@ class Question extends Model
     
     public function scopeSearchQuestionsByTagCategory($query, $inputs)
     {
-        if (!empty($inputs['tag_category_id'])) {
-            return $query->where('tag_category_id', $inputs['tag_category_id']);
+        if (!empty($inputs['search_category_id'])) {
+            return $query->where('tag_category_id', $inputs['search_category_id']);
         }
     }
     

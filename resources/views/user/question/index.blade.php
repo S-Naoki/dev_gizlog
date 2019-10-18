@@ -16,11 +16,11 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all @if(empty($inputs['tag_category_id'])) selected @endif" id="0">all</div>
+      <div class="btn all @if(empty($inputs['search_category_id'])) selected @endif" id="0">all</div>
       @foreach ($tagCategories as $tagCategory)
-        <div class="btn {{ $tagCategory->name }} @if(isset($inputs['tag_category_id']) && $tagCategory->id == $inputs['tag_category_id']) selected @endif" id="{{ $tagCategory->id }}">{{ $tagCategory->name }}</div>
+        <div class="btn {{ $tagCategory->name }} @if(isset($inputs['search_category_id']) && $tagCategory->id == $inputs['search_category_id']) selected @endif" id="{{ $tagCategory->id }}">{{ $tagCategory->name }}</div>
       @endforeach
-      {!! Form::hidden('tag_category_id', null, ['id' => 'category-val']) !!}
+      {!! Form::hidden('search_category_id', null, ['id' => 'category-val']) !!}
     </div>
   {!! Form::close() !!}
   <div class="content-wrapper table-responsive">
