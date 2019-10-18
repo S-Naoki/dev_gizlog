@@ -95,7 +95,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $tagCategories = $this->tagCategory->all();
-        $tagCategoryArray = $this->tagCategory->fetchTagCategories($tagCategories);
+        $tagCategoryArray = $this->tagCategory->makeTagCategoryNames($tagCategories);
         $question = $this->question->find($id);
         return view('user.question.edit', compact('question', 'tagCategoryArray'));
     }
