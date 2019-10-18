@@ -45,11 +45,11 @@ class Question extends Model
     
     public function searchQuestions($inputs)
     {
-            return $this->searchQuestionsByKeyWord($inputs)
-                        ->searchQuestionsByTagCategory($inputs)
-                        ->orderby('created_at', 'desc')
-                        ->with('user', 'tagCategory', 'comments')
-                        ->get();
+        return $this->searchQuestionsByKeyWord($inputs)
+                    ->searchQuestionsByTagCategory($inputs)
+                    ->orderby('created_at', 'desc')
+                    ->with('user', 'tagCategory', 'comments')
+                    ->get();
     }
     
     public function scopeSearchQuestionsByTagCategory($query, $inputs)
