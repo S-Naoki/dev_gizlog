@@ -43,18 +43,14 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
      * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
      * 尚、このコメントアウトはコード提出の際は削除してください。
      */
-    Route::get('attendance', function () {
-        return view('user.attendance.index');
-    });
-    Route::get('attendance/absence', function () {
-        return view('user.attendance.absence');
-    });
-    Route::get('attendance/modify', function () {
-        return view('user.attendance.modify');
-    });
-    Route::get('attendance/mypage', function () {
-        return view('user.attendance.mypage');
-    });
+    Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
+    Route::post('attendance', ['as' => 'attendance.store', 'uses' => 'AttendanceController@store']);
+    Route::put('attendance/modify', ['as' => 'attendance.storeModification', 'uses' => 'AttendanceController@storeModification']);
+    Route::put('attendance/{id}', ['as' => 'attendance.storeEndTime', 'uses' => 'AttendanceController@storeEndTime']);    
+    Route::post('attendance/absence', ['as' => 'attendance.storeAbsence', 'uses' => 'AttendanceController@storeAbsence']);
+    Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@registerAbsence']);
+    Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@reportModification']);
+    Route::get('attendance/{id}/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMyPage']);
     /*
      * ---------------------------------------------------------
      */
